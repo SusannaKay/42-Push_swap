@@ -1,5 +1,5 @@
 NAME = push_swap
-CFLAGS = -g -gdwarf-4 -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -8,7 +8,11 @@ SRC = 	operations/swap.c\
 		operations/push.c\
 		operations/rotate.c\
 		operations/reverse.c\
-		utils/parsing.c\
+		utils/parse_utils.c\
+		utils/list_utils.c\
+		utils/array_utils.c\
+		utils/sort_utils.c\
+		utils/radix_sort.c\
 		push_swap.c\
 
 OBJ = $(SRC:.c=.o)
@@ -16,7 +20,10 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
-	gcc $(OBJ) $(CFLAGS) $(LIBFT) $(NAME)
+	gcc $(OBJ) $(LIBFT) -o $(NAME) $(CFLAGS)
+
+$(LIBFT):
+	make -C $(LIBFT_PATH)
 
 clean:
 	rm -f $(OBJ) $(OBJ_BONUS)
@@ -29,9 +36,6 @@ fclean: clean
 re: fclean all
 
 %.o: %.c
-	gcc $(CFLAGS) $(LIBFT_PATH) -O3 -c $< -o $@
-
-$(LIBFT):
-	make -C $(LIBFT_PATH)
+	gcc $(CFLAGS) -c $< -o $@
 
 .PHONY: all clean fclean re
