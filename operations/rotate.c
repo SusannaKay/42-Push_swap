@@ -6,11 +6,11 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 03:11:13 by skayed            #+#    #+#             */
-/*   Updated: 2025/03/29 03:57:37 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/05 15:26:25 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	ra(t_node **a)
 {

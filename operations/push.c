@@ -6,11 +6,11 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 01:56:21 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/02 16:11:11 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/05 15:28:41 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 void	pa(t_node **a, t_node **b)
 {
@@ -19,8 +19,8 @@ void	pa(t_node **a, t_node **b)
 	if (*b)
 	{
 		tmp = (*b)->next;
-		(*b)->next = a;
-		b = tmp;
+		(*b)->next = *a;
+		*b = tmp;
 		ft_printf("pa\n");
 	}
 }
