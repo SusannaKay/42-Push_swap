@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_prompt.c                                  :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 04:13:00 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/02 18:07:53 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/04 17:15:30 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	prompt_isalpha(char *str)
+static int *create_array(int *size, char **matrix)
 {
-	int	i;
-
+	int i;
+	int error;
+	char **tmp;
+	int *array;
+	
 	i = 0;
-	while (str[i])
+	error = 0;
+	array = malloc((*size) * sizeof(int));
+	if (!array)
+		return(NULL);
+	tmp = matrix;
+	while(*tmp)
 	{
-		if (ft_isalpha(str[i]))
-			return (1);
-		i++;
+		array[i++] = ft_atoil(*tmp++, &error);
+		if (error)
+			return (NULL);
 	}
-	return (0);
+	return (array);
 }
 
 static int	matrix_size(char **matrix)
@@ -36,7 +44,7 @@ static int	matrix_size(char **matrix)
 	return (i);
 }
 
-void	ft_free_matrix(char **matrix)
+static void	ft_free_matrix(char **matrix)
 {
 	int	i;
 
@@ -46,7 +54,7 @@ void	ft_free_matrix(char **matrix)
 	free(matrix);
 }
 
-long long int	ft_atoil(const char *str, int *error)
+static int	ft_atoil(const char *str, int *error)
 {
 	int				sign;
 	long long int	result;
@@ -75,24 +83,28 @@ long long int	ft_atoil(const char *str, int *error)
 	return (sign * result);
 }
 
-t_node	*validate_prompt(char *str, t_node *a)
+int	*parse_prompt(int argc, char **argv, int *array, int *size)
 {
 	char	**split;
-	int		*array;
 	int		error;
 	int		i;
 
 	i = 0;
 	error = 0;
-	split = ft_split(str, ' ');
-	if (!split)
-		return (free(split), NULL);
-	array = malloc(matrix_size(split) * sizeof(int));
-	while (*split)
+	if (argc == 2)
 	{
-		array[i++] = ft_atoil(*split++, &error);
-		if (error)
-			return (ft_free_matrix(split), error); //liberare array
+		split = ft_split(argv[1], ' ');
+		if (!split || split[0] == NULL)
+			return (NULL);
+		*size = matrix_size(split);
+		array = create_array(&size, split);
+		if (!array)
+			return(ft_free_matrix(split), NULL );
 	}
-	return (a);
+	else
+	{
+		*size = argc - 1;
+		array = create_array(&size, argv);
+	}
+	return (array);
 }
