@@ -8,6 +8,7 @@ SRC = 	operations/swap.c\
 		operations/push.c\
 		operations/rotate.c\
 		operations/reverse.c\
+		utils/parsing.c\
 		push_swap.c\
 
 OBJ = $(SRC:.c=.o)

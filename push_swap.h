@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 01:51:15 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/02 16:13:12 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/04 17:33:11 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,9 @@ void				rr(t_node **a, t_node **b);
 void				rra(t_node **a);
 void				rrb(t_node **b);
 void				rrr(t_node **a, t_node **b);
+int	*parse_prompt(int argc, char **argv, int *array, int *size);
+int sort_array(int *array, int size);
+void	fill_stack(t_node **a, int *array, int size);
+
 
 #endif
