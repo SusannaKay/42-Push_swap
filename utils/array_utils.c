@@ -6,49 +6,69 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:56:55 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/04 17:23:08 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/05 16:03:52 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static void bubble_sort(int *array, int size)
+static int	*dup_array(int *array, int size)
 {
-	int swapped;
+	int *sorted;
 	int i;
-	int tmp;
 	
+	sorted = malloc(sizeof(int) * size);
+	i = 0;
+	if (!sorted)
+		return(NULL);
+	i = 0;
+	while (i < size)
+	{
+		sorted[i] = array[i];
+		i++;
+	}
+	return(sorted);
+}
+int	*bubble_sort(int *array, int size)
+{
+	int	*sorted;
+	int	tmp;
+	int	i;
+	int	swapped;
+
 	swapped = 1;
+	sorted = dup_array(array, size);
 	while (swapped)
 	{
 		swapped = 0;
 		i = 0;
 		while (i < size - 1)
 		{
-			if (array[i] > array[i + 1] && i + 1 < size - 1)
-				{
-					tmp = array[i];
-					array[i] = array[i + 1];
-					array[i + 1] = tmp;
-					swapped = 1;
-				}
-				i++;
+			if (sorted[i] > sorted[i + 1])
+			{
+				tmp = sorted[i];
+				sorted[i] = sorted[i + 1];
+				sorted[i + 1] = tmp;
+				swapped = 1;
+			}
+			i++;
 		}
 	}
+	return (sorted);
 }
-static int is_dup(int *array, int size)
+static int	is_dup(int *array, int size)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
-	while ( i < size - 1)
+	while (i < size - 1)
 	{
 		j = 0;
 		while (j < i)
 		{
 			if (array[i] == array[j])
-				return(1);
+				return (1);
 			j++;
 		}
 		i++;
@@ -56,24 +76,23 @@ static int is_dup(int *array, int size)
 	return (0);
 }
 
-static int is_sort(int *array, int size)
+static int	is_sort(int *array, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while ( i < size - 1)
+	while (i < size - 1)
 	{
 		if (array[i] > array[i + 1])
-			return(0);
+			return (0);
 		i++;
 	}
-	return(1);	
+	return (1);
 }
 
-int sort_array(int *array, int size)
+int	check_array(int *array, int size)
 {
 	if (is_dup(array, size) || is_sort(array, size))
 		return (1);
-	bubble_sort(array, size);
 	return (0);
 }

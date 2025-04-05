@@ -1,60 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 04:13:00 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/04 17:15:30 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/05 15:56:00 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static int *create_array(int *size, char **matrix)
-{
-	int i;
-	int error;
-	char **tmp;
-	int *array;
-	
-	i = 0;
-	error = 0;
-	array = malloc((*size) * sizeof(int));
-	if (!array)
-		return(NULL);
-	tmp = matrix;
-	while(*tmp)
-	{
-		array[i++] = ft_atoil(*tmp++, &error);
-		if (error)
-			return (NULL);
-	}
-	return (array);
-}
-
-static int	matrix_size(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i])
-		i++;
-	return (i);
-}
-
-static void	ft_free_matrix(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix);
-}
-
-static int	ft_atoil(const char *str, int *error)
+static int	ft_atoll(const char *str, int *error)
 {
 	int				sign;
 	long long int	result;
@@ -83,13 +41,51 @@ static int	ft_atoil(const char *str, int *error)
 	return (sign * result);
 }
 
+static int	*create_array(int *size, char **matrix, int *error)
+{
+	int		i;
+	char	**tmp;
+	int		*array;
+
+	i = 0;
+	array = malloc((*size) * sizeof(int));
+	if (!array)
+		return (NULL);
+	tmp = matrix;
+	while (*tmp)
+	{
+		array[i++] = ft_atoll(*tmp++, error);
+		if (error)
+			return (NULL);
+	}
+	return (array);
+}
+
+static int	matrix_size(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+		i++;
+	return (i);
+}
+
+static void	ft_free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+		free(matrix[i++]);
+	free(matrix);
+}
+
 int	*parse_prompt(int argc, char **argv, int *array, int *size)
 {
 	char	**split;
-	int		error;
-	int		i;
+	int		*error;
 
-	i = 0;
 	error = 0;
 	if (argc == 2)
 	{
@@ -97,14 +93,14 @@ int	*parse_prompt(int argc, char **argv, int *array, int *size)
 		if (!split || split[0] == NULL)
 			return (NULL);
 		*size = matrix_size(split);
-		array = create_array(&size, split);
+		array = create_array(size, split, error);
 		if (!array)
-			return(ft_free_matrix(split), NULL );
+			return (ft_free_matrix(split), NULL);
 	}
 	else
 	{
 		*size = argc - 1;
-		array = create_array(&size, argv);
+		array = create_array(size, argv, error);
 	}
 	return (array);
 }
