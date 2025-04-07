@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 04:13:00 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/05 15:56:00 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/07 07:18:13 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_atoll(const char *str, int *error)
 		str++;
 	while (*str)
 	{
-		if (!ft_isdigit(*str))
+		if (ft_isdigit(*str) == 1)
 			return (*error = 1, 0);
 		result = result * 10 + (*str - 48);
 		str++;
@@ -55,8 +55,8 @@ static int	*create_array(int *size, char **matrix, int *error)
 	while (*tmp)
 	{
 		array[i++] = ft_atoll(*tmp++, error);
-		if (error)
-			return (NULL);
+		if (*error)
+			return (free(array), NULL);
 	}
 	return (array);
 }
@@ -83,24 +83,27 @@ static void	ft_free_matrix(char **matrix)
 
 int	*parse_prompt(int argc, char **argv, int *array, int *size)
 {
-	char	**split;
-	int		*error;
+    char	**split;
+    int		error; // Declare error as a regular integer
 
-	error = 0;
-	if (argc == 2)
-	{
-		split = ft_split(argv[1], ' ');
-		if (!split || split[0] == NULL)
-			return (NULL);
-		*size = matrix_size(split);
-		array = create_array(size, split, error);
-		if (!array)
-			return (ft_free_matrix(split), NULL);
-	}
-	else
-	{
-		*size = argc - 1;
-		array = create_array(size, argv, error);
-	}
-	return (array);
+    error = 0; // Initialize error to 0
+    if (argc == 2)
+    {
+        split = ft_split(argv[1], ' ');
+        if (!split || split[0] == NULL)
+            return (NULL);
+        *size = matrix_size(split);
+        array = create_array(size, split, &error); // Pass the address of error
+        ft_free_matrix(split); // Free the split matrix after use
+        if (!array || error) // Check if array creation failed or error occurred
+            return (NULL);
+    }
+    else
+    {
+        *size = argc - 1;
+        array = create_array(size, argv + 1, &error); // Pass argv + 1 to skip program name
+        if (!array || error) // Check if array creation failed or error occurred
+            return (NULL);
+    }
+    return (array);
 }

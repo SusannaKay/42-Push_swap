@@ -6,13 +6,14 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 01:51:15 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/05 12:24:48 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/07 07:25:06 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "libft/libft.h"
 # include <stdlib.h>
 typedef struct s_node
 {
@@ -36,5 +37,8 @@ int					*parse_prompt(int argc, char **argv, int *array, int *size);
 int					check_array(int *array, int size);
 void				fill_stack(t_node **a, int *array, int size);
 int					*bubble_sort(int *array, int size);
-int					free_all(t_node **a, t_node **b, int *array, char *error)
+void					free_all(t_node **a, t_node **b, int *array, char *msg);
+void	radix_sort(t_node **a, t_node **b);
+void	sort_stack(t_node **a, t_node **b, int size);
+void free_stack(t_node **stack);
 #endif

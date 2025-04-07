@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 14:12:34 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/05 16:07:04 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/07 07:21:48 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	radix_sort(t_node **a, t_node **b)
 				ra(a);
 			else
 				pb(a,b);
+			j++;
 		}
 		while(*b)
 			pa(a,b);

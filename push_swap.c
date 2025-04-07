@@ -6,43 +6,52 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 01:47:02 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/05 12:24:58 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/07 07:24:30 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	free_all(t_node **a, t_node **b, int *array, char *error)
+void free_stack(t_node **stack)
 {
-	if (error)
-		ft_printf(error);
+	t_node	*tmp;
+
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
+}
+void	free_all(t_node **a, t_node **b, int *array, char *msg)
+{
+	if (msg)
+		ft_printf("%s", msg);
 	if (a && *a)
 		free_stack(a);
 	if (b && *b)
 		free_stack(b);
 	if (array)
 		free(array);
-	return(1);
 }
 int	main(int argc, char *argv[])
 {
-	t_node	*a;
-	t_node	*b;
-	int		*array;
-	int		size;
+    t_node	*a;
+    t_node	*b;
+    int		*array;
+    int		size;
 
-	b = NULL;
-	if (argc < 2)
-		return (0);
-	array = parse_prompt(argc, argv, array, &size);
-	if (!array)
-		return (ft_printf("Error\n"), 1);
-	if (!check_array(array, size))
-	{
-		free(array);
-		return (ft_printf("Error\n"), 1);
-	}
-	fill_stack(a, array, size);
-	free(array);
-	return (0);
+    a = NULL;
+    b = NULL;
+    if (argc < 2)
+        return (0);
+    array = parse_prompt(argc, argv, NULL, &size);
+    if (!array || check_array(array, size))
+    {
+        free(array);
+        return (ft_printf("Error\n"), 1);
+    }
+    fill_stack(&a, array, size);
+    sort_stack(&a, &b, size);
+    free_all(&a, &b, array, NULL); // Passa l'array per liberarlo
+    return (0);
 }
