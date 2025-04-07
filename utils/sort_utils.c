@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 12:29:42 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 07:21:18 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/07 08:45:01 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static void	push_min(t_node **a, t_node **b)
         tmp = tmp->next;
     }
     while ((*a)->value != min_node->value)
-        ra(a); // Ruota finché il minimo non è in cima
-    pb(a, b); // Sposta il minimo nello stack b
+        ra(a);
+    pb(a, b);
 }
 
 static void	sort_five(t_node **a, t_node **b, int size)
@@ -56,9 +56,9 @@ static void	sort_five(t_node **a, t_node **b, int size)
 	if (size == 5)
 		push_min(a,b);
 	sort_three(a);
-	pb(a,b);
+	pa(a,b);
 	if(size == 5)
-		pb(a,b);
+		pa(a,b);
 }
 void	sort_stack(t_node **a, t_node **b, int size)
 {

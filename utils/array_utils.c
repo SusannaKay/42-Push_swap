@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:56:55 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/05 16:03:52 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/07 07:38:26 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,23 @@ int	*bubble_sort(int *array, int size)
 	}
 	return (sorted);
 }
-static int	is_dup(int *array, int size)
+static int is_dup(int *array, int size)
 {
-	int	i;
-	int	j;
+    int i, j;
 
-	i = 1;
-	while (i < size - 1)
-	{
-		j = 0;
-		while (j < i)
-		{
-			if (array[i] == array[j])
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
+    i = 0;
+    while (i < size)
+    {
+        j = i + 1;
+        while (j < size)
+        {
+            if (array[i] == array[j])
+                return (1);
+            j++;
+        }
+        i++;
+    }
+    return (0);
 }
 
 static int	is_sort(int *array, int size)

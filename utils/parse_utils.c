@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 04:13:00 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 07:18:13 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/07 07:43:08 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_atoll(const char *str, int *error)
 		str++;
 	while (*str)
 	{
-		if (ft_isdigit(*str) == 1)
+		if (!ft_isdigit(*str))
 			return (*error = 1, 0);
 		result = result * 10 + (*str - 48);
 		str++;
