@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 01:51:15 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 07:25:06 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/07 12:49:42 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ int					*parse_prompt(int argc, char **argv, int *array, int *size);
 int					check_array(int *array, int size);
 void				fill_stack(t_node **a, int *array, int size);
 int					*bubble_sort(int *array, int size);
-void					free_all(t_node **a, t_node **b, int *array, char *msg);
-void	radix_sort(t_node **a, t_node **b);
-void	sort_stack(t_node **a, t_node **b, int size);
-void free_stack(t_node **stack);
+void				free_all(t_node **a, t_node **b, int *array, char *msg);
+void				radix_sort(t_node **a, t_node **b);
+void				sort_stack(t_node **a, t_node **b, int size);
+void				free_stack(t_node **stack);
+
 #endif

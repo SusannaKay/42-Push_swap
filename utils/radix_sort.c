@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 14:12:34 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 07:21:48 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/07 12:56:16 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ void	radix_sort(t_node **a, t_node **b)
 		j = 0;
 		while (j <= index_max)
 		{
-			if(((*a)->index >> i) & 1)
-				ra(a);
+			if((((*a)->index >> i) & 1) == 0)
+				pb(a, b);
 			else
-				pb(a,b);
+				ra(a);
 			j++;
 		}
 		while(*b)

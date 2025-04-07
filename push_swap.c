@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 01:47:02 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 07:24:30 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/07 12:19:30 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ int	main(int argc, char *argv[])
     }
     fill_stack(&a, array, size);
     sort_stack(&a, &b, size);
-    free_all(&a, &b, array, NULL); // Passa l'array per liberarlo
+    free_all(&a, &b, array, NULL);
     return (0);
 }
