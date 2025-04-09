@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 01:47:07 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/05 15:26:29 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/09 16:11:11 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	sa(t_node **a)
 		ft_printf("sa\n");
 	}
 }
+
 void	sb(t_node **b)
 {
 	int	tmp;
@@ -36,6 +37,7 @@ void	sb(t_node **b)
 		ft_printf("sb\n");
 	}
 }
+
 void	ss(t_node **a, t_node **b)
 {
 	sa(a);

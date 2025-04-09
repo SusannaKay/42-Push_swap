@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 16:59:11 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 07:23:47 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/09 16:08:24 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	append_node(t_node **stack, t_node *new)
 		tmp = tmp->next;
 	tmp->next = new;
 }
+
 static void	get_index(t_node *a, int *sorted, int size)
 {
 	int	i;
@@ -59,9 +60,9 @@ void	fill_stack(t_node **a, int *array, int size)
 		new = malloc(sizeof(t_node));
 		if (!new)
 		{
-			free_stack(a); // Libera i nodi già allocati
+			free_stack(a);
 			free(sorted);
-			return;
+			return ;
 		}
 		new->value = array[i];
 		new->index = 0;

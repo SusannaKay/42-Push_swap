@@ -6,39 +6,52 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 12:29:42 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 12:55:19 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/09 15:31:36 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// static int	is_sorted(t_node **a)
-// {
-// 	t_node	*current;
-
-// 	current = *a;
-// 	while (current && current->next)
-// 	{
-// 		if (current->value > current->next->value)
-// 			return (0);
-// 		current = current->next;
-// 	}
-// 	return (1);
-// }
-
-static void	sort_three(t_node **a)
+void	print_stack(t_node **stack)
 {
-	t_node	*current;
+	t_node	*tmp;
 
-	current = *a;
-	if (current->value > current->next->value)
-		sa(a);
-	if (current->next->value > current->next->next->value)
+	tmp = *stack;
+	while (tmp)
 	{
-		rra(a);
-		if (current->value > current->next->value)
-			sa(a);
+		ft_printf("%d ", tmp->value);
+		tmp = tmp->next;
 	}
+	ft_printf("\n");
+}
+
+void	sort_three(t_node **stack)
+{
+	int	a;
+	int	b;
+	int	c;
+
+	a = (*stack)->value;
+	b = (*stack)->next->value;
+	c = (*stack)->next->next->value;
+	if ((a > b) && (b < c) && (a < c))
+		sa(stack);
+	else if ((a > b) && (b > c))
+	{
+		sa(stack);
+		rra(stack);
+	}
+	else if (a > b && b < c && a > c)
+	{
+		ra(stack);
+	}
+	else if (a < b && b > c && a < c)
+	{
+		sa(stack);
+		ra(stack);
+	}
+	else if (a < b && b > c && a > c)
+		rra(stack);
 }
 
 static void	push_min(t_node **a, t_node **b)
@@ -74,6 +87,7 @@ static void	sort_five(t_node **a, t_node **b, int size)
 	if (size == 5)
 		pa(a, b);
 }
+
 void	sort_stack(t_node **a, t_node **b, int size)
 {
 	if (size == 2)
@@ -81,7 +95,9 @@ void	sort_stack(t_node **a, t_node **b, int size)
 	else if (size == 3)
 		sort_three(a);
 	else if (size == 4 || size == 5)
+	{
 		sort_five(a, b, size);
+	}
 	else
 		radix_sort(a, b);
 }

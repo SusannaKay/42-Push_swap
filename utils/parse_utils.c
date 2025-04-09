@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 04:13:00 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 07:43:08 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/09 16:06:16 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,27 +83,27 @@ static void	ft_free_matrix(char **matrix)
 
 int	*parse_prompt(int argc, char **argv, int *array, int *size)
 {
-    char	**split;
-    int		error; // Declare error as a regular integer
+	char	**split;
+	int		error;
 
-    error = 0; // Initialize error to 0
-    if (argc == 2)
-    {
-        split = ft_split(argv[1], ' ');
-        if (!split || split[0] == NULL)
-            return (NULL);
-        *size = matrix_size(split);
-        array = create_array(size, split, &error); // Pass the address of error
-        ft_free_matrix(split); // Free the split matrix after use
-        if (!array || error) // Check if array creation failed or error occurred
-            return (NULL);
-    }
-    else
-    {
-        *size = argc - 1;
-        array = create_array(size, argv + 1, &error); // Pass argv + 1 to skip program name
-        if (!array || error) // Check if array creation failed or error occurred
-            return (NULL);
-    }
-    return (array);
+	error = 0;
+	if (argc == 2)
+	{
+		split = ft_split(argv[1], ' ');
+		if (!split || split[0] == NULL)
+			return (NULL);
+		*size = matrix_size(split);
+		array = create_array(size, split, &error);
+		ft_free_matrix(split);
+		if (!array || error)
+			return (NULL);
+	}
+	else
+	{
+		*size = argc - 1;
+		array = create_array(size, argv + 1, &error);
+		if (!array || error)
+			return (NULL);
+	}
+	return (array);
 }

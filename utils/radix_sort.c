@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 14:12:34 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 12:56:16 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/09 16:07:56 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ static int	find_bit(int num)
 	}
 	return (bits);
 }
+
 void	radix_sort(t_node **a, t_node **b)
 {
-	int index_max;
-	int bit;
+	int	index_max;
+	int	bit;
 	int	i;
-	int j;
+	int	j;
 
 	index_max = num_max(a);
 	bit = find_bit(index_max);
@@ -55,14 +56,14 @@ void	radix_sort(t_node **a, t_node **b)
 		j = 0;
 		while (j <= index_max)
 		{
-			if((((*a)->index >> i) & 1) == 0)
+			if ((((*a)->index >> i) & 1) == 0)
 				pb(a, b);
 			else
 				ra(a);
 			j++;
 		}
-		while(*b)
-			pa(a,b);
+		while (*b)
+			pa(a, b);
 		i++;
 	}
 }

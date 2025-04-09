@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 01:51:15 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 12:49:42 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/09 16:11:54 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include <stdlib.h>
+
 typedef struct s_node
 {
 	int				value;

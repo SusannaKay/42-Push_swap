@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:56:55 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/07 12:49:50 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/09 16:09:45 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 static int	*dup_array(int *array, int size)
 {
-	int *sorted;
-	int i;
-	
+	int	*sorted;
+	int	i;
+
 	sorted = malloc(sizeof(int) * size);
 	i = 0;
 	if (!sorted)
-		return(NULL);
+		return (NULL);
 	i = 0;
 	while (i < size)
 	{
 		sorted[i] = array[i];
 		i++;
 	}
-	return(sorted);
+	return (sorted);
 }
+
 int	*bubble_sort(int *array, int size)
 {
 	int	*sorted;
@@ -56,23 +57,25 @@ int	*bubble_sort(int *array, int size)
 	}
 	return (sorted);
 }
-static int is_dup(int *array, int size)
-{
-    int i, j;
 
-    i = 0;
-    while (i < size)
-    {
-        j = i + 1;
-        while (j < size)
-        {
-            if (array[i] == array[j])
-                return (1);
-            j++;
-        }
-        i++;
-    }
-    return (0);
+static int	is_dup(int *array, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (array[i] == array[j])
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
 
 static int	is_sort(int *array, int size)
