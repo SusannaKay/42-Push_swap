@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 17:56:55 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/09 16:09:45 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/09 16:28:14 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ static int	is_sort(int *array, int size)
 
 int	check_array(int *array, int size)
 {
-	if (is_dup(array, size) || is_sort(array, size))
+	if (is_dup(array, size))
 		return (1);
+	if (is_sort(array, size))
+		exit (1);
 	return (0);
 }
