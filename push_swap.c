@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 01:47:02 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/09 16:32:07 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/15 08:09:13 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ void	free_stack(t_node **stack)
 	}
 }
 
-void	free_all(t_node **a, t_node **b, int *array, char *msg)
+void	free_all(t_node **a, t_node **b, int *array)
 {
-	if (msg)
-		ft_printf("%s", msg);
 	if (a && *a)
 		free_stack(a);
 	if (b && *b)
@@ -49,12 +47,9 @@ int	main(int argc, char *argv[])
 		return (0);
 	array = parse_prompt(argc, argv, NULL, &size);
 	if (!array || check_array(array, size))
-	{
-		free(array);
-		return (ft_printf("Error\n"), 1);
-	}
+		return(free(array), 1);
 	fill_stack(&a, array, size);
 	sort_stack(&a, &b, size);
-	free_all(&a, &b, array, NULL);
+	free_all(&a, &b, array);
 	return (0);
 }
