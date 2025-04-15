@@ -6,7 +6,7 @@
 /*   By: skayed <skayed@student.42roma.it>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 04:13:00 by skayed            #+#    #+#             */
-/*   Updated: 2025/04/15 07:59:46 by skayed           ###   ########.fr       */
+/*   Updated: 2025/04/15 08:31:31 by skayed           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static int	ft_atoll(const char *str, int *error)
 		if (!ft_isdigit(*str))
 			return (*error = 1, 0);
 		result = result * 10 + (*str - 48);
+		if ((sign * result) >= INT_MAX || (sign * result) <= INT_MIN)
+			return (*error = 1, 0);
 		str++;
 	}
-	if ((sign * result) > 2147483647 || (sign * result) < -2147483648)
-			return (*error = 1, 0);
 	return (sign * result);
 }
 
@@ -91,7 +91,7 @@ int	*parse_prompt(int argc, char **argv, int *array, int *size)
 	{
 		split = ft_split(argv[1], ' ');
 		if (!split || split[0] == NULL)
-			return (write(2, "Error\n", 6), NULL);
+			return (NULL);
 		*size = matrix_size(split);
 		if (*size == 1)
 			return (ft_free_matrix(split), NULL);
